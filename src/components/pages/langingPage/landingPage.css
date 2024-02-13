@@ -1,0 +1,263 @@
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+body{
+  font-family: Bai Jamjuree, sans-serif;
+}
+
+.grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-areas: 
+    'nav nav nav'
+    'main main main';
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 60px 1fr; 
+  overflow: hidden; 
+}
+
+nav,
+main {
+  color: #f5f0f0;
+}
+
+nav {
+  grid-area: nav;
+  display:flex;
+  align-items: center;
+  background-color:white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+main {
+  grid-area: main;
+}
+
+/* navlinks css */
+.navlinks {
+  display: flex;
+  flex-direction: row;
+  gap: 150px;
+  align-items:center;
+}
+
+img {
+ height:60px;
+  width:150px
+}
+a{
+  text-decoration:none;
+  color:black;
+}
+
+.nav-button{
+  background: linear-gradient(
+    114.07deg,
+    rgba(10, 73, 116, 0.37) 3.49%,
+    rgba(15, 68, 91, 0.37) 34.7%
+  ),
+  linear-gradient(138.58deg, rgba(10, 91, 132, 0.37) 43.56%, #0d364f 112.68%);
+  color:white;
+  padding:8px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+/* maincontent */
+
+.main-content {
+  display: grid;
+   grid-template-columns: 7fr 3fr;
+  height:600px;
+ 
+  margin-left:60px;
+  margin-right:60px;
+  border-radius:30px;
+  background: linear-gradient(to right, #0c81ed, #0e345d);
+
+}
+
+.left-column,
+.right-column {
+  padding: 50px;
+  margin-top:100px;
+
+}
+
+
+.left-column {
+  display:flex;
+  flex-direction:column;
+
+}
+.right-column {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  border:1px solid #32abf5;
+  background-color:#0d3254;
+  margin-right:70px;
+  margin-bottom:70px;
+  border-radius:10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px; 
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 5px;
+  width:200px;
+}
+.form-group input,
+.login-button {
+  box-sizing: border-box;
+}
+
+
+.login-button{
+  background: linear-gradient(
+    114.07deg,
+    #41aaec 3.49%,
+    #0d527d 34.7%
+  ),
+  linear-gradient(138.58deg, #1997e6 43.56%, #0d364f 112.68%);
+  color:white;
+  padding:8px;
+  border-radius:5px;
+  cursor:pointer;
+  width:200px;
+}
+
+
+/* navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.navlinks {
+  display: flex;
+}
+
+.navlinks a {
+  text-decoration: none;
+  color: black;
+  padding: 10px 20px; 
+}
+
+.menu-icon {
+  display: none;
+  
+  cursor: pointer;
+}
+
+/* Media query for mobile view */
+@media screen and (max-width: 768px) {
+  .navlinks {
+    display: none; /* Hide the navigation links by default */
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    width: 100%; 
+  }
+
+  .navlinks.open {
+    display: flex; 
+    max-height: 200px; 
+    overflow-y: auto; 
+  }
+
+  .navlinks a {
+    padding: 10px 20px; 
+  }
+
+  .menu-icon {
+    display: block; 
+    color:black;
+   
+  }
+}
+
+
+
+
+/* media queries for adding responsiveness */
+
+
+@media screen and (max-width: 800px) {
+  .grid {
+    grid-template-areas: 
+      'nav'
+      'main';
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr; 
+  }
+
+  .navlinks {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .main-content {
+    grid-template-columns: 1fr;
+    margin: 20px;
+  }
+
+  .left-column,
+  .right-column {
+    padding: 20px;
+  }
+  .left-column{
+    display:none
+  }
+  .right-column{
+    margin-right:10px;
+  }
+
+  .form-group input,
+  .login-button {
+    width: 100%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .grid {
+  
+    grid-template-rows: auto; 
+  }
+
+  .main-content {
+  
+    margin: 20px;
+    padding: 20px;
+  
+  
+  }
+
+
+  .form-group input,
+  .login-button {
+    width: calc(100% - 10px); 
+  }
+}
+
