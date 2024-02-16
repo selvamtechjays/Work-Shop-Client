@@ -19,6 +19,7 @@ body{
 nav,
 main {
   color: #f5f0f0;
+  width:100%
 }
 
 nav {
@@ -37,7 +38,7 @@ main {
 .navlinks {
   display: flex;
   flex-direction: row;
-  gap: 150px;
+  gap: 130px;
   align-items:center;
 }
 
@@ -50,18 +51,6 @@ a{
   color:black;
 }
 
-.nav-button{
-  background: linear-gradient(
-    114.07deg,
-    rgba(10, 73, 116, 0.37) 3.49%,
-    rgba(15, 68, 91, 0.37) 34.7%
-  ),
-  linear-gradient(138.58deg, rgba(10, 91, 132, 0.37) 43.56%, #0d364f 112.68%);
-  color:white;
-  padding:8px;
-  border-radius:5px;
-  cursor:pointer;
-}
 
 /* maincontent */
 
