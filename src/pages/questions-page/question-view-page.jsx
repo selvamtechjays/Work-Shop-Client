@@ -11,11 +11,12 @@ import {
   MDBCard,
   MDBCardBody,
 } from "mdb-react-ui-kit";
-import "./Dashboard.css";
+import "../../styles/dashboard.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+   //Define Question view component
 export default function QuestionView() {
   const [fullscreenXlModal, setFullscreenXlModal] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -25,13 +26,12 @@ export default function QuestionView() {
   const navigate = useNavigate();
 
   //initial time
-  const [timeLeft, setTimeLeft] = useState(15);
+  const [timeLeft, setTimeLeft] = useState(1500);
   // Define a state variable to track if the timer is active
   const [timerActive, setTimerActive] = useState(true);
   const [timerPaused, setTimerPaused] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(15 * 60); 
-  const timerIntervalRef = useRef(null)
-
+  const [remainingTime, setRemainingTime] = useState(15 * 60);
+  const timerIntervalRef = useRef(null);
 
   // Function to handle timer completion
   const handleTimerCompletion = () => {
@@ -42,7 +42,6 @@ export default function QuestionView() {
 
   // Function to handle timer pause/resume
   const handleTimerPauseResume = () => {
-   
     if (timerActive) {
       clearInterval(timerIntervalRef.current);
       setTimerPaused(true);
@@ -73,7 +72,6 @@ export default function QuestionView() {
     handleTimerPauseResume();
   };
 
-
   // Function to handle each second of the timer
   const handleTimerTick = () => {
     setTimeLeft((prevTime) => prevTime - 1);
@@ -93,8 +91,6 @@ export default function QuestionView() {
     }
     return () => clearInterval(timerIntervalRef.current);
   }, [timeLeft, timerActive, timerPaused]);
-
-
 
   const [questions, setQuestions] = useState(
     Array.from({ length: 20 }, (_, index) => ({
@@ -205,12 +201,16 @@ export default function QuestionView() {
           questions: questionList,
           selectedOptions: questions.map((question) => {
             if (question.selectedOptionIndex !== null) {
-              return questionList[question.number - 1].options[question.selectedOptionIndex - 1];
+              return questionList[question.number - 1].options[
+                question.selectedOptionIndex - 1
+              ];
             } else {
               return "Not answered";
             }
           }),
-          correctAnswers: questionList.map((question) => question.options[question.correctOptionIndex - 1]),
+          correctAnswers: questionList.map(
+            (question) => question.options[question.correctOptionIndex - 1],
+          ),
         },
       });
     }, 1000);

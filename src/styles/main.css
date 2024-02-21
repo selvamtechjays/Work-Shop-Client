@@ -160,7 +160,7 @@ a{
 /* Media query for mobile view */
 @media screen and (max-width: 768px) {
   .navlinks {
-    display: none; /* Hide the navigation links by default */
+    display: none; 
     flex-direction: column;
     gap: 10px;
     background-color: white;

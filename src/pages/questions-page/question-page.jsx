@@ -12,29 +12,33 @@ import {
   MDBTableHead,
   MDBTableBody,
 } from "mdb-react-ui-kit";
-import QuestionView from "./questionview";
+import QuestionView from "./question-view-page";
 
 export default function TestModal() {
   const [fullscreenXlModal, setFullscreenXlModal] = useState(true);
-//question vie
   const [isQuestionOpen, setIsQuestionOpen] = useState(false);
 
+  // Open the modal containing questions
   const openModal = () => {
-      setIsQuestionOpen(true);
+    setIsQuestionOpen(true);
   };
 
+  // Close the modal containing questions
   const closeModal = () => {
-      setIsQuestionOpen(false);
+    setIsQuestionOpen(false);
   };
 
+  // Set up the initial state of the modal
   useEffect(() => {
     setFullscreenXlModal(true);
   }, []);
 
+  // Toggle the state of the modal
   const toggleOpen = () => setFullscreenXlModal(!fullscreenXlModal);
 
   return (
     <>
+      {/* Modal container */}
       <MDBModal
         tabIndex="-1"
         open={fullscreenXlModal}
@@ -42,17 +46,21 @@ export default function TestModal() {
       >
         <MDBModalDialog size="fullscreen">
           <MDBModalContent style={{ height: "100%", width: "100%" }}>
+            {/* Modal header */}
             <MDBModalHeader>
               <MDBModalTitle>
-                Please Read Following Instructions Carefully{" "}
+                Please Read Following Instructions Carefully
               </MDBModalTitle>
             </MDBModalHeader>
+            {/* Modal body */}
             <MDBModalBody style={{ height: "calc(100% - 120px)", overflowY: "auto" }}>
+              {/* Instructions */}
               <div>
                 Total Number of Sections: 3<br />
                 Total Numbers of Questions: 100<br />
                 Total Time Available: 60 minutes (1 hour)
               </div>
+              {/* Table displaying section details */}
               <div style={{ height: "100%" }}>
                 <MDBTable bordered borderColor="primary" style={{ height: "100px" }}>
                   <MDBTableHead>
@@ -66,7 +74,7 @@ export default function TestModal() {
                     </tr>
                   </MDBTableHead>
                   <MDBTableBody>
-                    <tr >
+                    <tr>
                       <th scope="row">1</th>
                       <td>English Language</td>
                       <td>30</td>
@@ -92,18 +100,22 @@ export default function TestModal() {
                     </tr>
                   </MDBTableBody>
                 </MDBTable>
+                {/* Legend for question statuses */}
                 <div>
                   <span style={{background: "gray", height: "50px", width: "50px"}}>1</span>
-You have not visited the question yet<br />
+                  You have not visited the question yet<br />
                   <span style={{background:"red"}}>2</span>You have not answered the question<br />
-        <span style={{background:"green"}}>3</span>You have answered the question<br />
+                  <span style={{background:"green"}}>3</span>You have answered the question<br />
                 </div>
               </div>
-              
             </MDBModalBody>
+            {/* Modal footer */}
             <MDBModalFooter>
+              {/* Button to open question modal */}
               <MDBBtn onClick={openModal}>Take Test</MDBBtn>
+              {/* Question modal */}
               {isQuestionOpen && <QuestionView onClose={closeModal} />}
+              {/* Button to close the modal */}
               <MDBBtn type="button" color="secondary" onClick={toggleOpen}>
                 Close
               </MDBBtn>
