@@ -1,24 +1,22 @@
-import React, { useState } from "react";
-import "./landingPage.css";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { API_URL } from "../../api/url";
+import { API_URL } from '../../utils/api';
+import '../../styles/main.css';
 
-
-
-
+// Define the SignupPage component
 const SignupPage = () => {
   const [signupData, setSignupData] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  //handle change function 
+  // Handle input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setSignupData({
@@ -26,56 +24,47 @@ const SignupPage = () => {
       [name]: value,
     });
   };
-  console.log(signupData);
 
-  //handle submit function
-
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-      `${API_URL}/api/signup`,
-      signupData,
-      {
+      const response = await axios.post(`${API_URL}/api/signup`, signupData, {
         headers: {
-        "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-      }
-      );
+      });
 
       if (response.status === 201) {
-      // Handle successful registration
-      console.log("Registration successful");
-        toast.success("Registration successful")
+        // Registration successful
+        console.log('Registration successful');
+        toast.success('Registration successful');
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate('/dashboard');
         }, 3000);
       } else {
-      // Handle registration error
-      console.error("Registration failed");
-        toast.error("Registration failed");
+        // Registration failed
+        console.error('Registration failed');
+        toast.error('Registration failed');
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-      // User already exists
-      console.error("User already exists");
-        toast.error("User already exists")
+        // User already exists
+        console.error('User already exists');
+        toast.error('User already exists');
       } else {
-      // Other error
-      console.error("Error during registration", error);
-        toast.error("Error during registration")
+        // Other error
+        console.error('Error during registration', error);
+        toast.error('Error during registration');
       }
     }
-    };
+  };
 
   return (
-    <div className="main-content" style={{ color: "white", marginTop: "60px" }}>
+    <div className="main-content" style={{ color: 'white', marginTop: '60px' }}>
       <div className="left-column">
         <h1>500+ FREE Mock Tests for All Govt. Exams</h1>
-        <h2>
-          Attempt 500+ Free Mock tests for Bank, SSC, Railways, Regulatory,
-          UPSC, Defence, Teaching, Railways Exams and more
-        </h2>
+        <h2>Attempt 500+ Free Mock tests for Bank, SSC, Railways, Regulatory, UPSC, Defence, Teaching, Railways Exams and more</h2>
       </div>
       <div className="right-column">
         <h2>Signup Form</h2>
@@ -118,12 +107,14 @@ const SignupPage = () => {
             Sign Up
           </button>
           <p className="text">
-            Already Have an Account? <Link to="/" style={{ color: "yellow" }}>Log In</Link>
+            Already Have an Account? <Link to="/" style={{ color: 'yellow' }}>Log In</Link>
           </p>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
 
 export default SignupPage;
+
