@@ -33,7 +33,7 @@ export default function App() {
         {/* score board route */}
         <Route path="/scoreboard" element={<Scoreboard />} />
         {/* forget password link route */}
-        <Route path="/forgetPassword" element={<ForgetPasswordForm />} />
+        <Route path="/forgetPassword/" element={<ForgetPasswordForm />} />
         {/* update passord route */}
         <Route path="/updatepassword/:id" element={<UpdatePasswordForm />} />
       </Routes>

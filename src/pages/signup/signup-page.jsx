@@ -29,7 +29,7 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API_URL}/api/signup`, signupData, {
+      const response = await axios.post(`${API_URL}/signup`, signupData, {
         headers: {
           'Content-Type': 'application/json',
         },

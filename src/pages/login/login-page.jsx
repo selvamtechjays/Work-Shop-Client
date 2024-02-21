@@ -30,7 +30,7 @@ const MainContent = () => {
     e.preventDefault();
     try {
       // Send sign-in data to the server
-      const response = await axios.post(`${API_URL}/api/login`, signinData, {
+      const response = await axios.post(`${API_URL}/login`, signinData, {
         headers: {
           'Content-Type': 'application/json',
         },
