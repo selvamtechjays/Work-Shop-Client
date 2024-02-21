@@ -15,6 +15,7 @@ import "../../styles/dashboard.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API_URL } from "../../utils/api";
 
    //Define Question view component
 export default function QuestionView() {
@@ -105,7 +106,7 @@ export default function QuestionView() {
   const getAllQuestions = async () => {
     try {
       const response = await axios.get(
-        "https://0464d52f-9a35-4b9d-920e-000585dbec09-00-2jm2mdy9r392h.sisko.replit.dev/api/get-all-questions",
+        `${API_URL}/get-all-questions`,
       );
       setQuestionList(response.data);
     } catch (error) {
