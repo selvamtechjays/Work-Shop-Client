@@ -13,7 +13,7 @@ export default function Scoreboard() {
 // function to save scoreboard data
   const saveScoreboardData = async () => {
     try {
-      const response = await axios.post(`${API_URL}/api/save-scoreboard`, {
+      const response = await axios.post(`${API_URL}/save-scoreboard`, {
         score,
         totalQuestions,
         questions,
