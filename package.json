@@ -21,6 +21,7 @@
     "vite": "^5.0.0"
   },
   "dependencies": {
+    "@nivo/bar": "^0.84.0",
     "@nivo/bump": "^0.84.0",
     "axios": "^1.6.7",
     "mdb-react-ui-kit": "^7.2.0",

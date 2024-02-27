@@ -37,7 +37,7 @@ const HistoryPage = () => {
   return (
     <div className="mt-4">
       <MDBContainer className={`scoreboard-container ${isScoreboardOpen ? 'shadow' : ''}`} onClick={() => setIsScoreboardOpen(false)}>
-        <h1 className="text-center">Scoreboard History</h1>
+        <h1 className="text-center" style={{background:'blue',color:'white'}}>Scoreboard History</h1>
         <MDBListGroup>
           {scoreboardData.map((attempt, index) => (
             <MDBListGroupItem

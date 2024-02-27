@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { ResponsiveBump } from '@nivo/bump';
+import { ResponsiveBar } from '@nivo/bar';
 import { API_URL } from "../utils/api";
 
-//Define chart component
+// Define chart component
 export default function Chart() {
-  //state management for chart data
+  // State management for chart data
   const [data, setData] = useState([]);
-// fetch data from database
+
+  // Fetch data from database
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -16,7 +17,7 @@ export default function Chart() {
 
         const formattedData = scoreboardData.map((entry, index) => ({
           id: `Attempt ${index + 1}`,
-          data: [{ x: `Attempt ${index + 1}`, y: entry.score }] 
+          score: entry.score
         }));
 
         setData(formattedData);
@@ -26,40 +27,26 @@ export default function Chart() {
     };
 
     fetchData();
-  }, []); 
+  }, []);
 
   return (
-    <ResponsiveBump
+    <ResponsiveBar
       data={data}
+      keys={['score']}
+      indexBy="id"
+      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      padding={0.3}
       colors={{ scheme: 'spectral' }}
-      lineWidth={3}
-      activeLineWidth={6}
-      inactiveLineWidth={3}
-      inactiveOpacity={0.15}
-      pointSize={10}
-      activePointSize={16}
-      inactivePointSize={0}
-      pointColor={{ theme: 'background' }}
-      pointBorderWidth={3}
-      activePointBorderWidth={3}
-      pointBorderColor={{ from: 'serie.color' }}
-      axisTop={{
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: '',
-        legendPosition: 'middle',
-        legendOffset: -36,
-        truncateTickAt: 0
-      }}
+      borderRadius={5}
+      axisTop={null}
+      axisRight={null}
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
         legend: '',
         legendPosition: 'middle',
-        legendOffset: 32,
-        truncateTickAt: 0
+        legendOffset: 32
       }}
       axisLeft={{
         tickSize: 5,
@@ -67,14 +54,18 @@ export default function Chart() {
         tickRotation: 0,
         legend: 'Score',
         legendPosition: 'middle',
-        legendOffset: -40,
-        truncateTickAt: 0
+        legendOffset: -40
       }}
-      margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
-      axisRight={null}
+      labelSkipWidth={12}
+      labelSkipHeight={12}
+      labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+      animate={true}
+      motionStiffness={90}
+      motionDamping={15}
     />
   );
 }
+
 
 
 
