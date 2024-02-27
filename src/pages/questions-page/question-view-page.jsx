@@ -236,7 +236,14 @@ export default function QuestionView() {
                     Question {questions[currentQuestionIndex].number}:{" "}
                     {questionList.length > 0 &&
                       questionList[currentQuestionIndex].questionText}
+                    
                     <div className="options">
+                      {questionList.length > 0 &&
+                        questionList[currentQuestionIndex] &&
+                        questionList[currentQuestionIndex].imageUrl && (
+                          <img src={questionList[currentQuestionIndex].imageUrl} alt="Question Image" />
+                        )}
+
                       {questionList.length > 0 &&
                         questionList[currentQuestionIndex].options.map(
                           (option, index) => (

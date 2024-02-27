@@ -11,7 +11,7 @@ import {
 export default function Card() {
   return (
     <MDBCard alignment="center">
-      <MDBCardHeader>SBI Clerk Mock Tests</MDBCardHeader>
+      <MDBCardHeader style={{background:'blue',color:'white'}}>SBI Clerk Mock Tests</MDBCardHeader>
       <MDBCardBody>
         <MDBBtn href="#" style={{ margin: "10px" }}>
           SBI Clerk Prelims

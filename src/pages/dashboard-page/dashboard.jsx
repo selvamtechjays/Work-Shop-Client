@@ -66,10 +66,14 @@ const Dashboard = () => {
         <div className="row-1">
           <Card />
         </div>
-        <div className="row-2">
-          {activeLink === 'History' ? <HistoryPage />:<Test/>}
-          {activeLink == 'Progress' && <ParentComponent />}
+        <div className="row-2" style={{marginTop:'80px'}}>
+          {activeLink === 'Progress' ? <ParentComponent /> : (
+            <>
+              {activeLink === 'History' ? <HistoryPage /> : <Test />}
+            </>
+          )}
         </div>
+
 
       </div>
     </div>

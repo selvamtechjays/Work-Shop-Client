@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { MDBCard, MDBCardBody, MDBBtn } from "mdb-react-ui-kit";
+import { MDBCard, MDBCardBody, MDBBtn, MDBCardHeader } from "mdb-react-ui-kit";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
 import { toast } from "react-toastify";
@@ -40,11 +40,13 @@ export default function Scoreboard() {
       }}
     >
       <MDBCard style={{ width: "800px" }}>
-        <MDBCardBody>
-          <h1 className="mb-4">Scoreboard</h1>
+        <MDBCardHeader style={{background:'blue',color:'white',textAlign:'center'}} >   <h1 className="mb-4">Scoreboard</h1>
           <p className="mb-0">
             Your score is {score} out of {totalQuestions}
           </p>
+        </MDBCardHeader>
+        <MDBCardBody>
+       
           <div style={{ marginTop: "20px" }}>
             {questions.map((question, index) => (
               <div key={index} style={{ marginBottom: "20px" }}>
