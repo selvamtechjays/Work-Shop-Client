@@ -8,7 +8,7 @@ import {
   MDBBtn,
 } from "mdb-react-ui-kit";
 import TestModal from "../pages/questions-page/question-page";
-
+import '../styles/dashboard.css'
 
 // Test component to display test information and start the test
 export default function Test() {
@@ -26,9 +26,9 @@ export default function Test() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
+    <div className="test-container">
       {/* First container */}
-      <MDBCard style={{width:'350px' ,textAlign:'center'}}>
+      <MDBCard className="test-card" >
         <MDBCardHeader style={{background:'blue',color:'white'}}>SBI-Clerk-Prelims-1</MDBCardHeader>
         <MDBCardBody>
           <MDBCardTitle>Max Score-20</MDBCardTitle>
@@ -42,8 +42,8 @@ export default function Test() {
       </MDBCard>
 
       {/* Second container */}
-      <MDBCard style={{width:'350px' ,textAlign:'center'}}>
-        <MDBCardHeader style={{background:'blue',color:'white'}} >SBI-Clerk-Prelims-2</MDBCardHeader>
+      <MDBCard className="test-card">
+        <MDBCardHeader  style={{background:'blue',color:'white'}}>SBI-Clerk-Prelims-2</MDBCardHeader>
         <MDBCardBody>
           <MDBCardTitle>Max Score-20</MDBCardTitle>
           <MDBCardText>Total Questions-20</MDBCardText>
@@ -56,9 +56,9 @@ export default function Test() {
       </MDBCard>
 
       {/* Third container */}
-      <MDBCard style={{width:'350px' ,textAlign:'center'}}>
-        <MDBCardHeader style={{background:'blue',color:'white'}}>SBI-Clerk-Prelims-3</MDBCardHeader>
-        <MDBCardBody >
+      <MDBCard className="test-card">
+        <MDBCardHeader  style={{background:'blue',color:'white'}}>SBI-Clerk-Prelims-3</MDBCardHeader>
+        <MDBCardBody>
           <MDBCardTitle>Max Score-20</MDBCardTitle>
           <MDBCardText>Total Questions-20</MDBCardText>
           <MDBCardText>Total Time-25 Minutes</MDBCardText>

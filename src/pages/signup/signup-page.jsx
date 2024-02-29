@@ -39,6 +39,7 @@ const SignupPage = () => {
         // Registration successful
         console.log('Registration successful');
         toast.success('Registration successful');
+        localStorage.setItem("userInfo",JSON.stringify(response.data._id))
         setTimeout(() => {
           navigate('/dashboard');
         }, 3000);

@@ -1,17 +1,17 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { ToastContainer } from 'react-toastify';
-import LandingPage from './pages/login/landing-page';
-import SignupPage from './pages/signup/signup-page';
-import Dashboard from './pages/dashboard-page/dashboard';
-import Scoreboard from './pages/score-board/score-board-page';
+import { ToastContainer } from "react-toastify";
+import LandingPage from "./pages/login/landing-page";
+import SignupPage from "./pages/signup/signup-page";
+import Dashboard from "./pages/dashboard-page/dashboard";
+import Scoreboard from "./pages/score-board/score-board-page";
 import {
   ForgetPasswordForm,
   UpdatePasswordForm,
-} from './pages/forget-password-page/forget-password';
-import NavbarLinks from './components/nav-links';
+} from "./pages/forget-password-page/forget-password";
+import NavbarLinks from "./components/nav-links";
 
-    //root component
+//root component
 export default function App() {
   return (
     <div className="app">
@@ -27,8 +27,15 @@ export default function App() {
 
         {/* signup route path */}
         <Route path="/signup" element={<SignupPage />} />
-
-        <Route path="/dashboard" element={<Dashboard />} />
+        {/* Dashboard route */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoutes>
+              <Dashboard />
+            </ProtectedRoutes>
+          }
+        />
 
         {/* score board route */}
         <Route path="/scoreboard" element={<Scoreboard />} />
@@ -39,4 +46,20 @@ export default function App() {
       </Routes>
     </div>
   );
+}
+
+//protected route for dashboard
+export function ProtectedRoutes(props) {
+  // Check if user info is present in localStorage
+  const userInfoString = localStorage.getItem("userInfo");
+  // Parse user info string to object
+  const userInfo = JSON.parse(userInfoString);
+  // Get email from userInfo object
+  const email = userInfo ? userInfo.userEmail : null;
+
+  if (email) {
+    return props.children;
+  } else {
+    return <Navigate to="/" />;
+  }
 }
