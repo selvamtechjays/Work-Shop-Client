@@ -1,30 +1,43 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { MDBCard, MDBCardBody, MDBBtn, MDBCardHeader } from "mdb-react-ui-kit";
 import axios from "axios";
 import { API_URL } from "../../utils/api";
 import { toast } from "react-toastify";
 
- //Define score board component
+//Define score board component
 export default function Scoreboard() {
   const location = useLocation();
   const { score, totalQuestions, questions, selectedOptions, correctAnswers } =
     location.state;
-// function to save scoreboard data
+  const navigate = useNavigate();
+  // Function to save scoreboard data
   const saveScoreboardData = async () => {
     try {
+      // Retrieve user ID from localStorage
+      const userInfoString = localStorage.getItem("userInfo");
+      const userInfo = JSON.parse(userInfoString);
+      const userId = userInfo.userId;
+
+      // Send scoreboard data to the server along with the user ID
       const response = await axios.post(`${API_URL}/save-scoreboard`, {
         score,
         totalQuestions,
         questions,
         selectedOptions,
         correctAnswers,
+        user: userId,
       });
+
       console.log("Scoreboard data saved successfully", response.data);
+
+      // Display toast message and navigate upon successful save
       toast.success("Scoreboard data saved successfully");
-    
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error saving scoreboard data:", error);
+
+      // Display error toast message
       toast.error("Error saving scoreboard data");
     }
   };
@@ -40,13 +53,16 @@ export default function Scoreboard() {
       }}
     >
       <MDBCard style={{ width: "800px" }}>
-        <MDBCardHeader style={{background:'blue',color:'white',textAlign:'center'}} >   <h1 className="mb-4">Scoreboard</h1>
+        <MDBCardHeader
+          style={{ background: "blue", color: "white", textAlign: "center" }}
+        >
+          {" "}
+          <h1 className="mb-4">Scoreboard</h1>
           <p className="mb-0">
             Your score is {score} out of {totalQuestions}
           </p>
         </MDBCardHeader>
         <MDBCardBody>
-       
           <div style={{ marginTop: "20px" }}>
             {questions.map((question, index) => (
               <div key={index} style={{ marginBottom: "20px" }}>

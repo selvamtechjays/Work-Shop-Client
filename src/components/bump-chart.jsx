@@ -8,11 +8,15 @@ export default function Chart() {
   // State management for chart data
   const [data, setData] = useState([]);
 
+  // Retrieve user ID from localStorage
+  const userInfoString = localStorage.getItem("userInfo");
+  const userInfo = JSON.parse(userInfoString);
+  const userId = userInfo.userId;
   // Fetch data from database
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/get-all-scoreboard`);
+        const response = await axios.get(`${API_URL}/get-all-scoreboard?userId=${userId}`);
         const scoreboardData = response.data;
 
         const formattedData = scoreboardData.map((entry, index) => ({

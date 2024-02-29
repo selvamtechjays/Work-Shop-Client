@@ -9,11 +9,15 @@ const HistoryPage = () => {
   const [selectedAttempt, setSelectedAttempt] = useState(null);
   const [isScoreboardOpen, setIsScoreboardOpen] = useState(true);
 
+  // Retrieve user ID from localStorage
+  const userInfoString = localStorage.getItem("userInfo");
+  const userInfo = JSON.parse(userInfoString);
+  const userId = userInfo.userId;
   //get all the scoredboard details from database
   useEffect(() => {
     const fetchScoreboardData = async () => {
       try {
-        const response = await axios.get(`${API_URL}/get-all-scoreboard`);
+        const response = await axios.get(`${API_URL}/get-all-scoreboard?userId=${userId}`);
         setScoreboardData(response.data);
       } catch (error) {
         console.error("Error fetching scoreboard data:", error);

@@ -40,6 +40,13 @@ const MainContent = () => {
       if (response.status === 200) {
         console.log('Login successful');
         toast.success('Login Successfully');
+        const { _id, email } = response.data.user;
+
+        // Creating an object with user ID and email
+        const userInfo = { userId: _id, userEmail: email };
+
+        // Saving the userInfo object into localStorage after stringifying it
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
         setTimeout(() => {
           navigate('/dashboard');
         }, 3000);
