@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
+
 import LandingPage from "./pages/login/landing-page";
 import SignupPage from "./pages/signup/signup-page";
 import Dashboard from "./pages/dashboard-page/dashboard";
@@ -9,7 +10,10 @@ import {
   ForgetPasswordForm,
   UpdatePasswordForm,
 } from "./pages/forget-password-page/forget-password";
-import NavbarLinks from "./components/nav-links";
+
+import HistoryPage from "./pages/history/user-histroy";
+import ParentComponent from "./components/chart-parent";
+import Test from "./components/test-card";
 
 //root component
 export default function App() {
@@ -17,17 +21,14 @@ export default function App() {
     <div className="app">
       <ToastContainer />
 
-      <nav>
-        <NavbarLinks />
-      </nav>
-
       <Routes>
-        {/* Landing page route */}
+        {/* Public Routes */}
         <Route path="/" element={<LandingPage />} />
-
-        {/* signup route path */}
         <Route path="/signup" element={<SignupPage />} />
-        {/* Dashboard route */}
+        <Route path="/forgetPassword" element={<ForgetPasswordForm />} />
+        <Route path="/updatepassword/:id" element={<UpdatePasswordForm />} />
+
+        {/* Protected Parent Route with CHILD ROUTES */}
         <Route
           path="/dashboard"
           element={
@@ -35,31 +36,24 @@ export default function App() {
               <Dashboard />
             </ProtectedRoutes>
           }
-        />
+        >
+          {/* Child Routes */}
+          <Route index element={<Test />} /> {/* default dashboard content */}
+          <Route path="history" element={<HistoryPage />} />
+          <Route path="progress" element={<ParentComponent />} />
+        </Route>
 
-        {/* score board route */}
+        {/* ScoreBoard outside dashboard */}
         <Route path="/scoreboard" element={<Scoreboard />} />
-        {/* forget password link route */}
-        <Route path="/forgetPassword/" element={<ForgetPasswordForm />} />
-        {/* update passord route */}
-        <Route path="/updatepassword/:id" element={<UpdatePasswordForm />} />
       </Routes>
     </div>
   );
 }
 
-//protected route for dashboard
-export function ProtectedRoutes(props) {
-  // Check if user info is present in localStorage
-  const userInfoString = localStorage.getItem("userInfo");
-  // Parse user info string to object
-  const userInfo = JSON.parse(userInfoString);
-  // Get email from userInfo object
+// Protected Route
+export function ProtectedRoutes({ children }) {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const email = userInfo ? userInfo.userEmail : null;
 
-  if (email) {
-    return props.children;
-  } else {
-    return <Navigate to="/" />;
-  }
+  return email ? children : <Navigate to="/" />;
 }
