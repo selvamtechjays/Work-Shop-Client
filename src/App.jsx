@@ -6,6 +6,7 @@ import LandingPage from "./pages/login/landing-page";
 import SignupPage from "./pages/signup/signup-page";
 import Dashboard from "./pages/dashboard-page/dashboard";
 import Scoreboard from "./pages/score-board/score-board-page";
+import ProfilePage from "./pages/profile/profile-page";
 import {
   ForgetPasswordForm,
   UpdatePasswordForm,
@@ -45,6 +46,16 @@ export default function App() {
 
         {/* ScoreBoard outside dashboard */}
         <Route path="/scoreboard" element={<Scoreboard />} />
+
+        {/* Profile Page */}
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoutes>
+              <ProfilePage />
+            </ProtectedRoutes>
+          }
+        />
       </Routes>
     </div>
   );

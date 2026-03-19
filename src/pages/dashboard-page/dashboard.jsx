@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import HistoryPage from "../history/user-histroy";
 import ParentComponent from "../../components/chart-parent";
-import { AiOutlineDashboard } from "react-icons/ai";
+import { AiOutlineDashboard, AiOutlineUser } from "react-icons/ai";
 import { MdWorkHistory } from "react-icons/md";
 import { GiProgression } from "react-icons/gi";
 import { TbLogout } from "react-icons/tb";
@@ -84,6 +84,13 @@ const Dashboard = () => {
             style={{ marginTop: "30px" }}
           >
             <GiProgression /> Progress
+          </li>
+          <li
+            className={activeLink === "Profile" ? "active" : "side-link"}
+            onClick={() => navigate("/profile")}
+            style={{ marginTop: "30px" }}
+          >
+            <AiOutlineUser /> Profile
           </li>
           <li className="side-links" onClick={logout}>
             <TbLogout /> Logout
