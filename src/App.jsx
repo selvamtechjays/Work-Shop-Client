@@ -3,7 +3,9 @@ import "./App.css";
 import { ToastContainer } from "react-toastify";
 
 import LandingPage from "./pages/login/landing-page";
+import { LoginPage } from "./pages/login/LoginPage";
 import SignupPage from "./pages/signup/signup-page";
+import { SignUpPage } from "./pages/signup/SignUpPage";
 import Dashboard from "./pages/dashboard-page/dashboard";
 import Scoreboard from "./pages/score-board/score-board-page";
 import {
@@ -23,8 +25,9 @@ export default function App() {
 
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgetPassword" element={<ForgetPasswordForm />} />
         <Route path="/updatepassword/:id" element={<UpdatePasswordForm />} />
 
