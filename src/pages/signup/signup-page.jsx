@@ -62,7 +62,7 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="main-content" style={{ color: 'white', marginTop: '60px' }}>
+    <div className="main-content">
       <div className="left-column">
         <h1>500+ FREE Mock Tests for All Govt. Exams</h1>
         <h2>Attempt 500+ Free Mock tests for Bank, SSC, Railways, Regulatory, UPSC, Defence, Teaching, Railways Exams and more</h2>
@@ -108,7 +108,7 @@ const SignupPage = () => {
             Sign Up
           </button>
           <p className="text">
-            Already Have an Account? <Link to="/" style={{ color: 'yellow' }}>Log In</Link>
+            Already Have an Account? <Link to="/" className="signup-link">Log In</Link>
           </p>
         </form>
       </div>
