@@ -14,6 +14,7 @@ import {
 import HistoryPage from "./pages/history/user-histroy";
 import ParentComponent from "./components/chart-parent";
 import Test from "./components/test-card";
+import ProfilePage from "./pages/profile/profile-page";
 
 //root component
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
           <Route index element={<Test />} /> {/* default dashboard content */}
           <Route path="history" element={<HistoryPage />} />
           <Route path="progress" element={<ParentComponent />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
 
         {/* ScoreBoard outside dashboard */}
@@ -52,8 +54,12 @@ export default function App() {
 
 // Protected Route
 export function ProtectedRoutes({ children }) {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  const email = userInfo ? userInfo.userEmail : null;
-
-  return email ? children : <Navigate to="/" />;
+  try {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const email = userInfo ? userInfo.userEmail : null;
+    return email ? children : <Navigate to="/" />;
+  } catch (error) {
+    // Handle invalid JSON in localStorage
+    return <Navigate to="/" />;
+  }
 }

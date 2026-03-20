@@ -6,10 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import HistoryPage from "../history/user-histroy";
 import ParentComponent from "../../components/chart-parent";
+import ProfilePage from "../profile/profile-page";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { MdWorkHistory } from "react-icons/md";
 import { GiProgression } from "react-icons/gi";
 import { TbLogout } from "react-icons/tb";
+import { CgProfile } from "react-icons/cg";
 
 // Define the DashboardPage component
 const Dashboard = () => {
@@ -36,6 +38,8 @@ const Dashboard = () => {
       console.log("History link clicked");
     } else if (link === "Progress") {
       console.log("Progress link clicked");
+    } else if (link === "Profile") {
+      console.log("Profile link clicked");
     }
   };
 
@@ -85,6 +89,13 @@ const Dashboard = () => {
           >
             <GiProgression /> Progress
           </li>
+          <li
+            className={activeLink === "Profile" ? "active" : "side-link"}
+            onClick={() => handleLinkClick("Profile")}
+            style={{ marginTop: "30px" }}
+          >
+            <CgProfile /> Profile
+          </li>
           <li className="side-links" onClick={logout}>
             <TbLogout /> Logout
           </li>
@@ -105,7 +116,9 @@ const Dashboard = () => {
           <Card />
         </div>
         <div className="row-2" style={{ marginTop: "80px" }}>
-          {activeLink === "Progress" ? (
+          {activeLink === "Profile" ? (
+            <ProfilePage />
+          ) : activeLink === "Progress" ? (
             <ParentComponent />
           ) : (
             <>{activeLink === "History" ? <HistoryPage /> : <Test />}</>
