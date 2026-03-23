@@ -1,0 +1,237 @@
+/* Form Components Styles */
+
+/* Form Field */
+.form-field {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Label */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--label-color, #f5f0f0);
+  font-size: 0.9rem;
+}
+
+.form-label .required-indicator {
+  color: var(--error-color, #ef4444);
+  margin-left: 0.25rem;
+}
+
+/* Form Input */
+.form-input {
+  padding: 0.75rem;
+  border: 1px solid var(--input-border, #e2e8f0);
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: white;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--input-focus, #41aaec);
+  box-shadow: 0 0 0 3px rgba(65, 170, 236, 0.1);
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+}
+
+.form-input:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-input.error {
+  border-color: var(--error-color, #ef4444);
+}
+
+.form-input.error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Form Error Message */
+.form-error {
+  color: var(--error-color, #ef4444);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Form Helper Text */
+.form-helper-text {
+  color: var(--text-muted, #d1d5db);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Password Input Wrapper */
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #374151;
+}
+
+.password-toggle:focus {
+  outline: 2px solid var(--input-focus, #41aaec);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Button Styles */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: linear-gradient(114.07deg, #41aaec 3.49%, #0d527d 34.7%),
+              linear-gradient(138.58deg, #1997e6 43.56%, #0d364f 112.68%);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(114.07deg, #5bb5ef 3.49%, #0e5d8d 34.7%),
+              linear-gradient(138.58deg, #2da7f0 43.56%, #0e3f5f 112.68%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(65, 170, 236, 0.3);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: #6b7280;
+  color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #4b5563;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+.btn-loading .btn-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Spinner Animation */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Password Strength Indicator */
+.password-strength {
+  margin-top: 0.5rem;
+}
+
+.password-strength-title {
+  font-size: 0.875rem;
+  color: var(--text-muted, #d1d5db);
+  margin-bottom: 0.25rem;
+}
+
+.password-requirements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.password-requirements li {
+  font-size: 0.875rem;
+  color: var(--text-muted, #d1d5db);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.password-requirements li.met {
+  color: var(--success-color, #22c55e);
+}
+
+.password-requirements li.not-met {
+  color: var(--text-muted, #9ca3af);
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--input-focus, #41aaec);
+  outline-offset: 2px;
+}
+
+/* Ensure minimum touch target size on mobile */
+@media (max-width: 768px) {
+  .btn,
+  .form-input,
+  .password-toggle {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
