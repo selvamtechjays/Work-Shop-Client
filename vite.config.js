@@ -6,5 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
+  },
+  test: {
+    globals: true,
+    environment: 'node',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html']
+    }
   }
 })
