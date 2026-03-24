@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../styles/main.css';
+import '../../styles/validation.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_URL } from '../../utils/api';
+import { validateEmail, validatePasswordLogin } from '../../utils/validation';
 
 // Define the main content component
 const MainContent = () => {
@@ -13,8 +15,48 @@ const MainContent = () => {
     password: '',
   });
 
+  // State for validation errors
+  const [errors, setErrors] = useState({
+    email: '',
+    password: '',
+  });
+
+  // State for touched fields
+  const [touched, setTouched] = useState({
+    email: false,
+    password: false,
+  });
+
+  // State for form validity
+  const [formValid, setFormValid] = useState(false);
+
   // Hook to navigate to different pages
   const navigate = useNavigate();
+
+  // Function to validate individual field
+  const validateField = (fieldName, value) => {
+    let result;
+    if (fieldName === 'email') {
+      result = validateEmail(value);
+    } else if (fieldName === 'password') {
+      result = validatePasswordLogin(value);
+    }
+    setErrors(prev => ({
+      ...prev,
+      [fieldName]: result.error
+    }));
+    return result.isValid;
+  };
+
+  // Function to handle field blur
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched(prev => ({
+      ...prev,
+      [name]: true
+    }));
+    validateField(name, signinData[name]);
+  };
 
   // Function to handle input changes
   const handleInputChange = (e) => {
@@ -23,7 +65,18 @@ const MainContent = () => {
       ...prevData,
       [name]: value,
     }));
+    // Validate in real-time if field has been touched
+    if (touched[name]) {
+      validateField(name, value);
+    }
   };
+
+  // Effect to check form validity
+  useEffect(() => {
+    const isEmailValid = signinData.email && !errors.email;
+    const isPasswordValid = signinData.password && !errors.password;
+    setFormValid(isEmailValid && isPasswordValid);
+  }, [signinData, errors]);
 
   // Function to handle form submission
   const handleSubmit = async (e) => {
@@ -80,7 +133,7 @@ const MainContent = () => {
         <h2>Login Form</h2>
         <form>
           <div className="form-group">
-            <label htmlFor="username">Email</label>
+            <label htmlFor="useremail">Email</label>
             <input
               type="email"
               placeholder="Email"
@@ -88,8 +141,17 @@ const MainContent = () => {
               name="email"
               required={true}
               onChange={handleInputChange}
+              onBlur={handleBlur}
               value={signinData.email}
+              className={`${errors.email && touched.email ? 'input-error' : ''} ${!errors.email && touched.email && signinData.email ? 'input-success' : ''}`}
+              aria-invalid={errors.email && touched.email ? 'true' : 'false'}
+              aria-describedby="email-error"
             />
+            {errors.email && touched.email && (
+              <span id="email-error" className="error-message" role="alert" aria-live="polite">
+                {errors.email}
+              </span>
+            )}
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
@@ -100,10 +162,24 @@ const MainContent = () => {
               name="password"
               required={true}
               onChange={handleInputChange}
+              onBlur={handleBlur}
               value={signinData.password}
+              className={`${errors.password && touched.password ? 'input-error' : ''} ${!errors.password && touched.password && signinData.password ? 'input-success' : ''}`}
+              aria-invalid={errors.password && touched.password ? 'true' : 'false'}
+              aria-describedby="password-error"
             />
+            {errors.password && touched.password && (
+              <span id="password-error" className="error-message" role="alert" aria-live="polite">
+                {errors.password}
+              </span>
+            )}
           </div>
-          <button className="login-button" type="submit" onClick={handleSubmit}>
+          <button
+            className={`login-button ${(!formValid || Object.values(errors).some(err => err !== '')) ? 'button-disabled' : ''}`}
+            type="submit"
+            onClick={handleSubmit}
+            disabled={!formValid || Object.values(errors).some(err => err !== '')}
+          >
             Login
           </button>
           <p className="text">
