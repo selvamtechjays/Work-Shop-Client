@@ -1,6 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/toast.css";
 
 import LandingPage from "./pages/login/landing-page";
 import SignupPage from "./pages/signup/signup-page";

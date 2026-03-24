@@ -1,0 +1,84 @@
+.inputWrapper {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.required {
+  color: #ef4444;
+}
+
+.inputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+}
+
+.input.hasIcon {
+  padding-left: 3rem;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input.error {
+  border-color: #ef4444;
+}
+
+.input.error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorText {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: #ef4444;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .inputWrapper {
+    margin-bottom: 1.25rem;
+  }
+
+  .input {
+    font-size: 16px; /* Prevent zoom on mobile iOS */
+  }
+}

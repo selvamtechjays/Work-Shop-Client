@@ -1,139 +1,138 @@
+/**
+ * Global Styles
+ * Main stylesheet with design system integration, responsive layout, and accessibility
+ */
+
+/* Import Design System Variables */
+@import url('./variables.css');
+
+/* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-body{
-  font-family: Bai Jamjuree, sans-serif;
+/* ============================================
+   Global Resets & Base Styles
+   ============================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--gray-900);
+  background-color: var(--gray-50);
+}
+
+/* ============================================
+   Accessibility - Focus Indicators
+   ============================================ */
+
+/* Remove default outline and add custom focus styles */
+*:focus {
+  outline: none;
+}
+
+/* Visible focus indicator for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Focus styles for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* ============================================
+   Layout Grid System
+   ============================================ */
 
 .grid {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     'nav nav nav'
     'main main main';
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 60px 1fr; 
-  overflow: hidden; 
+  grid-template-rows: 60px 1fr;
+  overflow: hidden;
 }
 
 nav,
 main {
-  color: #f5f0f0;
-  width:100%
+  color: var(--gray-50);
+  width: 100%;
 }
 
 nav {
   grid-area: nav;
-  display:flex;
+  display: flex;
   align-items: center;
-  background-color:white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
 }
 
 main {
   grid-area: main;
 }
 
-/* navlinks css */
-.navlinks {
-  display: flex;
-  flex-direction: row;
-  gap: 130px;
-  align-items:center;
-}
+/* ============================================
+   Navigation Styles
+   ============================================ */
 
-img {
- height:60px;
-  width:150px
-}
-a{
-  text-decoration:none;
-  color:black;
-}
-
-
-/* maincontent */
-
-.main-content {
-  display: grid;
-   grid-template-columns: 7fr 3fr;
-  height:600px;
- 
-  margin-left:60px;
-  margin-right:60px;
-  border-radius:30px;
-  background: linear-gradient(to right, #0c81ed, #0e345d);
-
-}
-
-.left-column,
-.right-column {
-  padding: 50px;
-  margin-top:100px;
-
-}
-
-
-.left-column {
-  display:flex;
-  flex-direction:column;
-
-}
-.right-column {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  border:1px solid #32abf5;
-  background-color:#0d3254;
-  margin-right:70px;
-  margin-bottom:70px;
-  border-radius:10px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px; 
-}
-
-.form-group label {
-  margin-bottom: 5px;
-}
-
-.form-group input {
-  padding: 5px;
-  width:200px;
-}
-.form-group input,
-.login-button {
-  box-sizing: border-box;
-}
-
-
-.login-button{
-  background: linear-gradient(
-    114.07deg,
-    #41aaec 3.49%,
-    #0d527d 34.7%
-  ),
-  linear-gradient(138.58deg, #1997e6 43.56%, #0d364f 112.68%);
-  color:white;
-  padding:8px;
-  border-radius:5px;
-  cursor:pointer;
-  width:200px;
-}
-
-
-/* navbar */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-md) var(--spacing-lg);
+  width: 100%;
 }
 
 .logo {
@@ -143,110 +142,323 @@ a{
 
 .navlinks {
   display: flex;
+  flex-direction: row;
+  gap: var(--spacing-2xl);
+  align-items: center;
 }
 
 .navlinks a {
   text-decoration: none;
-  color: black;
-  padding: 10px 20px; 
+  color: var(--gray-900);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-fast);
+}
+
+.navlinks a:hover {
+  color: var(--primary);
 }
 
 .menu-icon {
   display: none;
-  
   cursor: pointer;
+  color: var(--gray-900);
+  font-size: var(--font-size-2xl);
 }
 
-/* Media query for mobile view */
-@media screen and (max-width: 768px) {
+img {
+  height: 60px;
+  width: 150px;
+}
+
+/* ============================================
+   Main Content Layout (Legacy - for backward compatibility)
+   ============================================ */
+
+.main-content {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  min-height: calc(100vh - 60px);
+  margin: var(--spacing-3xl) var(--spacing-3xl);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
+}
+
+.left-column,
+.right-column {
+  padding: var(--spacing-3xl);
+  display: flex;
+  flex-direction: column;
+}
+
+.left-column {
+  justify-content: center;
+  color: white;
+}
+
+.left-column h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-lg);
+  line-height: var(--line-height-tight);
+}
+
+.left-column h2 {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  opacity: 0.9;
+  font-weight: var(--font-weight-normal);
+}
+
+.right-column {
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(13, 50, 84, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ============================================
+   Form Styles (Legacy - kept for backward compatibility)
+   ============================================ */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+  margin-bottom: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--gray-50);
+}
+
+.form-group input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  transition: border-color var(--transition-fast);
+  min-height: 44px; /* Minimum touch target size */
+}
+
+.form-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-lighter);
+}
+
+.login-button {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  min-height: 44px; /* Minimum touch target size */
+  transition: all var(--transition-base);
+}
+
+.login-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.text {
+  color: var(--gray-100);
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ============================================
+   Responsive Design - Mobile First
+   ============================================ */
+
+/* Tablet (768px - 1023px) */
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .main-content {
+    grid-template-columns: 5fr 4fr;
+    margin: var(--spacing-xl);
+  }
+
+  .left-column h1 {
+    font-size: var(--font-size-3xl);
+  }
+
   .navlinks {
-    display: none; 
-    flex-direction: column;
-    gap: 10px;
-    background-color: white;
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
-    width: 100%; 
-  }
-
-  .navlinks.open {
-    display: flex; 
-    max-height: 200px; 
-    overflow-y: auto; 
-  }
-
-  .navlinks a {
-    padding: 10px 20px; 
-  }
-
-  .menu-icon {
-    display: block; 
-    color:black;
-   
+    gap: var(--spacing-xl);
   }
 }
 
-
-
-
-/* media queries for adding responsiveness */
-
-
-@media screen and (max-width: 800px) {
+/* Mobile (≤768px) */
+@media screen and (max-width: 768px) {
+  /* Grid Layout */
   .grid {
-    grid-template-areas: 
+    grid-template-areas:
       'nav'
       'main';
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr; 
+    grid-template-rows: 60px 1fr;
+  }
+
+  /* Navigation */
+  .navbar {
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 
   .navlinks {
+    display: none;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--spacing-sm);
+    background-color: white;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--gray-200);
+    width: 100%;
   }
 
+  .navlinks.open {
+    display: flex;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .navlinks a {
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  /* Main Content */
   .main-content {
     grid-template-columns: 1fr;
-    margin: 20px;
+    margin: var(--spacing-md);
+    min-height: 100vh;
   }
 
-  .left-column,
+  .left-column {
+    display: none; /* Hide promotional content on mobile */
+  }
+
   .right-column {
-    padding: 20px;
-  }
-  .left-column{
-    display:none
-  }
-  .right-column{
-    margin-right:10px;
+    margin: 0;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
   }
 
+  /* Forms */
   .form-group input,
   .login-button {
     width: 100%;
   }
 }
 
-
-@media screen and (max-width: 768px) {
-  .grid {
-  
-    grid-template-rows: auto; 
-  }
-
+/* Small Mobile (≤480px) */
+@media screen and (max-width: 480px) {
   .main-content {
-  
-    margin: 20px;
-    padding: 20px;
-  
-  
+    margin: 0;
+    border-radius: 0;
   }
 
+  .right-column {
+    padding: var(--spacing-md);
+    border-radius: 0;
+  }
 
-  .form-group input,
-  .login-button {
-    width: calc(100% - 10px); 
+  .left-column h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .left-column h2 {
+    font-size: var(--font-size-base);
   }
 }
 
+/* Large Desktop (≥1440px) */
+@media screen and (min-width: 1440px) {
+  .main-content {
+    max-width: 1400px;
+    margin: var(--spacing-3xl) auto;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  nav,
+  .navbar,
+  .menu-icon,
+  .navlinks {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+  .main-content {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+
+/* ============================================
+   Dark Mode Support (Future Enhancement)
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  /* Uncomment when implementing dark mode
+  body {
+    background-color: var(--gray-900);
+    color: var(--gray-50);
+  }
+  */
+}
+
+/* ============================================
+   Reduced Motion Preference
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
